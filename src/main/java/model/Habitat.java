@@ -1,10 +1,10 @@
 package model;
 
-public class Habitat {
+public final class Habitat {
 	
-	private Integer code;
-	private String name;
-	private String includes;
+	private final Integer code;
+	private final String name;
+	private final String includes;
 	
 	public Habitat(Integer code, String name, String includes) {
 		super();
@@ -17,26 +17,11 @@ public class Habitat {
 		return code;
 	}
 
-	public void setCode(Integer code) {
-		this.code = code;
-	}
-
 	public String getName() {
 		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getIncludes() {
 		return includes;
 	}
-
-	public void setIncludes(String includes) {
-		this.includes = includes;
-	}
-	
-	
-
 }
