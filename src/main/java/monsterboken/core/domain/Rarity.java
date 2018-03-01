@@ -1,4 +1,4 @@
-package monsterboken.domain;
+package monsterboken.core.domain;
 
 public enum Rarity {
     COMMON,

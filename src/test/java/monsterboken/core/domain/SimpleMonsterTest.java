@@ -1,10 +1,16 @@
-package monsterboken.domain;
+package monsterboken.core.domain;
 
-import org.junit.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
-import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.*;
+import monsterboken.core.domain.Habitat;
+import monsterboken.core.domain.Monster;
+import monsterboken.core.domain.Rarity;
 
 public class SimpleMonsterTest {
 
@@ -27,7 +33,7 @@ public class SimpleMonsterTest {
 
     @Test
     public void testHabitat() {
-        Habitat habitat = new Habitat(HABITAT_CODE, HABITAT_NAME, HABITAT_INCLUDES);
+        Habitat habitat = Habitat.create(HABITAT_CODE, HABITAT_NAME, HABITAT_INCLUDES);
         assertNotNull(habitat);
         assertThat(habitat.getCode(), is(HABITAT_CODE));
         assertThat(habitat.getName(), is(HABITAT_NAME));
@@ -37,9 +43,9 @@ public class SimpleMonsterTest {
     @Test
     public void teatMonster() {
         String name = "Drake";
-        Habitat habitat = new Habitat(HABITAT_CODE, HABITAT_NAME, HABITAT_INCLUDES);
+        Habitat habitat = Habitat.create(HABITAT_CODE, HABITAT_NAME, HABITAT_INCLUDES);
         Rarity rarity = Rarity.VERY_RARE;
-        Monster monster = new Monster(name, habitat, rarity);
+        Monster monster = Monster.create(name, habitat, rarity);
         assertNotNull(monster);
         assertThat(monster.getName(), is(name));
         assertThat(monster.getHabitat(), is(habitat));
