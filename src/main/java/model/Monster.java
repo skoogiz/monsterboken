@@ -3,8 +3,8 @@ package model;
 public final class Monster {
 	
 	private final String name;
-	private static Habitat habitat;
-	private static Rarity rarity;
+	private final Habitat habitat;
+	private final Rarity rarity;
 	
 	public Monster(String name, Habitat habitat, Rarity rarity) {
 		super();
