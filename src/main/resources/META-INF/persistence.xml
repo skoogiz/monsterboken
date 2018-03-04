@@ -1,0 +1,34 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+	version="2.1">
+
+	<persistence-unit name="inMemoryPU" transaction-type="RESOURCE_LOCAL">
+		<!-- Entity classes -->
+<!--         <class>monsterboken.db.domain.HabitatEO</class> -->
+<!--         <class>monsterboken.db.domain.MonsterEO</class>		 -->
+		<properties>
+			<!-- DB Driver -->
+			<property name="hibernate.connection.driver_class" value="org.h2.Driver"/>
+			<!-- DB Nane -->
+			<property name="hibernate.connection.url" value="jdbc:h2:mem:pcc-uiDB;DB_CLOSE_DELAY=-1"/>
+			<!-- DB User -->
+			<property name="hibernate.connection.username" value="sa"/>
+			<!-- DB Password -->
+			<property name="hibernate.connection.password" value=""/>
+			<!-- DB Dialect -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+			<!-- create / create-drop / update -->
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<!-- Cache Provider -->
+			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+			<!-- Show SQL in console -->
+			<property name="hibernate.show_sql" value="true" />
+			<!-- Show SQL formatted -->
+			<property name="hibernate.format_sql" value="true" />
+		</properties>
+		
+	</persistence-unit>
+
+</persistence>
