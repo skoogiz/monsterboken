@@ -1,4 +1,4 @@
-﻿ackage monsterboken.core.model;
+﻿package monsterboken.core.model;
 
 public class Monster {
 
