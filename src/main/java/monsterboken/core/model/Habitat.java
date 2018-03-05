@@ -1,4 +1,4 @@
-package monsterboken.core.model;
+﻿ackage monsterboken.core.model;
 
 public class Habitat {
 
