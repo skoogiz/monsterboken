@@ -1,12 +1,12 @@
-package model;
+package monsterboken.core.model;
 
-public final class Monster {
-	
+public class Monster {
+
 	private final String name;
 	private final Habitat habitat;
 	private final Rarity rarity;
-	
-	public Monster(String name, Habitat habitat, Rarity rarity) {
+
+	private Monster(String name, Habitat habitat, Rarity rarity) {
 		super();
 		this.name = name;
 		this.habitat = habitat;
@@ -23,5 +23,9 @@ public final class Monster {
 
 	public Rarity getRarity() {
 		return rarity;
+	}
+
+	public static Monster create(String name, Habitat habitat, Rarity rarity) {
+		return new Monster(name, habitat, rarity);
 	}
 }

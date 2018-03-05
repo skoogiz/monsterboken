@@ -3,9 +3,9 @@
  */
 package monsterboken.db.domain;
 
-import monsterboken.core.domain.Mappable;
-import monsterboken.core.domain.Monster;
-import monsterboken.core.domain.Rarity;
+import monsterboken.core.model.Mappable;
+import monsterboken.core.model.Monster;
+import monsterboken.core.model.Rarity;
 
 /**
  * @author anders.skoglund

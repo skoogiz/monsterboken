@@ -8,9 +8,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import monsterboken.core.domain.Habitat;
-import monsterboken.core.domain.Monster;
-import monsterboken.core.domain.Rarity;
+import monsterboken.core.model.Habitat;
+import monsterboken.core.model.Monster;
+import monsterboken.core.model.Rarity;
 
 public class SimpleMonsterTest {
 

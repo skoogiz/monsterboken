@@ -1,7 +1,7 @@
 package monsterboken.db.domain;
 
-import monsterboken.core.domain.Habitat;
-import monsterboken.core.domain.Mappable;
+import monsterboken.core.model.Habitat;
+import monsterboken.core.model.Mappable;
 
 public class HabitatEO implements Mappable<Habitat>{
 

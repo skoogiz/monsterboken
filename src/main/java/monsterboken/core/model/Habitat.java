@@ -1,12 +1,12 @@
-package model;
+package monsterboken.core.model;
 
-public final class Habitat {
-	
+public class Habitat {
+
 	private final Integer code;
 	private final String name;
 	private final String includes;
-	
-	public Habitat(Integer code, String name, String includes) {
+
+	private Habitat(Integer code, String name, String includes) {
 		super();
 		this.code = code;
 		this.name = name;
@@ -23,5 +23,9 @@ public final class Habitat {
 
 	public String getIncludes() {
 		return includes;
+	}
+
+	public static Habitat create(Integer code, String name, String includes) {
+		return new Habitat(code, name, includes);
 	}
 }
