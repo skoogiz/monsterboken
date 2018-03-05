@@ -1,42 +1,65 @@
 package monsterboken.db.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import monsterboken.core.model.Habitat;
 import monsterboken.core.model.Mappable;
 
-public class HabitatEO implements Mappable<Habitat>{
+@Entity
+public class HabitatEO implements Mappable<Habitat> {
 
-    private Integer code;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "HABITAT_ID")
+	private Long id;
+	
+	@Column(name = "CODE")
+	private Integer code;
+	
+	@Column(name = "NAME")
+	private String name;
+	
+	@Column(name = "INCLUDES")
+	private String includes;
 
-    private String name;
+	public Long getId() {
+		return id;
+	}
 
-    private String includes;
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Integer getCode() {
-        return code;
-    }
-	
+		return code;
+	}
+
 	public void setCode(Integer code) {
 		this.code = code;
 	}
 
-    public String getName() {
-        return name;
-    }
-    
-    public void setName(String name) {
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
 		this.name = name;
 	}
 
-    public String getIncludes() {
-        return includes;
-    }
-    
-    public void setIncludes(String includes) {
+	public String getIncludes() {
+		return includes;
+	}
+
+	public void setIncludes(String includes) {
 		this.includes = includes;
 	}
-    
-    @Override
-    public Habitat map() {
-    	return Habitat.create(code, name, includes);
-    }
+
+	@Override
+	public Habitat map() {
+		return Habitat.create(code, name, includes);
+	}
 }

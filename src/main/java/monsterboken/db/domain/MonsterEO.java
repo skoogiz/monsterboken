@@ -3,21 +3,46 @@
  */
 package monsterboken.db.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import monsterboken.core.model.Mappable;
 import monsterboken.core.model.Monster;
 import monsterboken.core.model.Rarity;
 
-/**
- * @author anders.skoglund
- *
- */
+@Entity
 public class MonsterEO implements Mappable<Monster> {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "MONSTER_ID")
+	private Long id;
+
+	@Column(name = "NAME")
 	private String name;
 
+	@ManyToOne(optional = false)
+    @JoinColumn(name="HABITAT_ID")
 	private HabitatEO habitat;
 
+	@Enumerated(EnumType.STRING)
+	@Column(name = "RARITY")
 	private Rarity rarity;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
