@@ -1,11 +1,11 @@
 package monsterboken.core.domain;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import monsterboken.core.model.Habitat;
@@ -18,26 +18,26 @@ public class SimpleMonsterTest {
     private static String HABITAT_NAME = "Skog";
     private static String HABITAT_INCLUDES = "Gläntor, stigar och ihåliga träd.";
 
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
     @Test
     public void testRarities() {
-        assertThat("Correct number of rarities", Rarity.values().length, is(5));
+        assertThat("Correct number of rarities", Rarity.values().length, equalTo(5));
     }
 
     @Test
     public void testHabitat() {
         Habitat habitat = Habitat.create(HABITAT_CODE, HABITAT_NAME, HABITAT_INCLUDES);
         assertNotNull(habitat);
-        assertThat(habitat.getCode(), is(HABITAT_CODE));
-        assertThat(habitat.getName(), is(HABITAT_NAME));
-        assertThat(habitat.getIncludes(), is(HABITAT_INCLUDES));
+        assertFalse(habitat.getId().isPresent());
+        assertThat(habitat.getCode(), equalTo(HABITAT_CODE));
+        assertThat(habitat.getName(), equalTo(HABITAT_NAME));
+        assertThat(habitat.getIncludes(), equalTo(HABITAT_INCLUDES));
+        
+        habitat = Habitat.create(1l, HABITAT_CODE, HABITAT_NAME, HABITAT_INCLUDES);
+        assertNotNull(habitat);
+        assertTrue(habitat.getId().isPresent());
+        assertThat(habitat.getCode(), equalTo(HABITAT_CODE));
+        assertThat(habitat.getName(), equalTo(HABITAT_NAME));
+        assertThat(habitat.getIncludes(), equalTo(HABITAT_INCLUDES));
     }
 
     @Test
@@ -47,8 +47,16 @@ public class SimpleMonsterTest {
         Rarity rarity = Rarity.VERY_RARE;
         Monster monster = Monster.create(name, habitat, rarity);
         assertNotNull(monster);
-        assertThat(monster.getName(), is(name));
-        assertThat(monster.getHabitat(), is(habitat));
-        assertThat(monster.getRarity(), is(rarity));
+        assertFalse(monster.getId().isPresent());
+        assertThat(monster.getName(), equalTo(name));
+        assertThat(monster.getHabitat(), equalTo(habitat));
+        assertThat(monster.getRarity(), equalTo(rarity));
+        
+        monster = Monster.create(1l, name, habitat, rarity);
+        assertNotNull(monster);
+        assertTrue(monster.getId().isPresent());
+        assertThat(monster.getName(), equalTo(name));
+        assertThat(monster.getHabitat(), equalTo(habitat));
+        assertThat(monster.getRarity(), equalTo(rarity));
     }
 }
