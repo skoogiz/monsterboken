@@ -1,4 +1,4 @@
-package model;
+package monsterboken.core.model;
 
 public enum Rarity {
 	
