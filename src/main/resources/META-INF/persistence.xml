@@ -6,8 +6,8 @@
 
 	<persistence-unit name="inMemoryPU" transaction-type="RESOURCE_LOCAL">
 		<!-- Entity classes -->
-        <class>monsterboken.db.domain.HabitatEO</class>
-        <class>monsterboken.db.domain.MonsterEO</class>		
+        <class>monsterboken.db.model.HabitatEO</class>
+        <class>monsterboken.db.model.MonsterEO</class>		
 		<properties>
 			<!-- DB Driver -->
 			<property name="hibernate.connection.driver_class" value="org.h2.Driver"/>

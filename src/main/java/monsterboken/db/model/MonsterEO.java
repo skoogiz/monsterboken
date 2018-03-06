@@ -1,7 +1,7 @@
 /**
  * 
  */
-package monsterboken.db.domain;
+package monsterboken.db.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
