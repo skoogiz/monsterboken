@@ -16,7 +16,11 @@ public final class Habitat {
 		this.name = name;
 		this.includes = includes;
 	}
-
+	
+	public Optional<Long> getId(){
+		return id;
+	}
+	
 	public Integer getCode() {
 		return code;
 	}
