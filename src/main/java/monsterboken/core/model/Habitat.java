@@ -9,7 +9,7 @@ public final class Habitat {
 	private final String name;
 	private final String includes;
 	
-	public Habitat(Optional id, Integer code, String name, String includes) {
+	public Habitat(Optional<Long> id, Integer code, String name, String includes) {
 		super();
 		this.id = id;
 		this.code = code;
