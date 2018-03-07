@@ -21,6 +21,10 @@ public final class Habitat {
 		return new Habitat(Optional.of(id), code, name, includes);
 	}
 	
+	public static Habitat create(Integer code, String name, String includes) {
+		return new Habitat(Optional.empty(), code, name, includes);
+	}
+	
 	public Optional<Long> getId(){
 		return id;
 	}
