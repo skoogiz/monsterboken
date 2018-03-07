@@ -1,18 +1,22 @@
 package monsterboken.core.model;
 
-public final class Monster {
+import java.util.Optional;
+
+public final class Monster{
 	
+	private final Optional<Long> id;
 	private final String name;
 	private final Habitat habitat;
 	private final Rarity rarity;
 	
-	public Monster(String name, Habitat habitat, Rarity rarity) {
+	private Monster(Optional id, String name, Habitat habitat, Rarity rarity) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.habitat = habitat;
 		this.rarity = rarity;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
