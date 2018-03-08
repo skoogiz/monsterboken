@@ -2,6 +2,7 @@ package monsterboken.db.model;
 
 import java.util.Optional;
 
+
 public class HabitatEO {
 
 	private Optional<Long> id;
@@ -9,7 +10,7 @@ public class HabitatEO {
 	private String name;
 	private String includes;
 
-	private HabitatEO() {
+	public HabitatEO() {
 
 	}
 

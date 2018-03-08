@@ -2,9 +2,11 @@ package monsterboken.db.model;
 
 import java.util.Optional;
 
+import monsterboken.core.model.Mappable;
+import monsterboken.core.model.Monster;
 import monsterboken.core.model.Rarity;
 
-public class MonsterEO {
+public abstract class MonsterEO<T> implements Mappable<T> {
 	
 	private Optional<Long> id;
 	private String name;
@@ -21,4 +23,42 @@ public class MonsterEO {
 		this.habitat = habitat;
 		this.rarity = rarity;
 	}
+	
+	public void monsterMap(){
+		map();
+	}
+
+	public Optional<Long> getId() {
+		return id;
+	}
+
+	public void setId(Optional<Long> id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public HabitatEO getHabitat() {
+		return habitat;
+	}
+
+	public void setHabitat(HabitatEO habitat) {
+		this.habitat = habitat;
+	}
+
+	public Rarity getRarity() {
+		return rarity;
+	}
+
+	public void setRarity(Rarity rarity) {
+		this.rarity = rarity;
+	}
+	
+	
 }
