@@ -1,18 +1,34 @@
 package monsterboken.core.model;
 
-public final class Monster {
+import java.util.Optional;
+
+public final class Monster{
 	
+	private final Optional<Long> id;
 	private final String name;
 	private final Habitat habitat;
 	private final Rarity rarity;
 	
-	public Monster(String name, Habitat habitat, Rarity rarity) {
+	private Monster(Optional<Long> id, String name, Habitat habitat, Rarity rarity) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.habitat = habitat;
 		this.rarity = rarity;
 	}
-
+	
+	public static Monster create(Long id, String name, Habitat habitat, Rarity rarity) {
+		return new Monster(Optional.of(id), name, habitat, rarity);
+	}
+	
+	public static Monster create(String name, Habitat habitat, Rarity rarity) {
+		return new Monster(Optional.empty(), name, habitat, rarity);
+	}
+	
+	public Optional<Long> getId(){
+		return id;
+	}
+	
 	public String getName() {
 		return name;
 	}
