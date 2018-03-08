@@ -8,10 +8,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import monsterboken.core.model.Habitat;
-import monsterboken.core.model.Monster;
-import monsterboken.core.model.Rarity;
-
 public class SimpleMonsterTest {
 
     private static int HABITAT_CODE = 2;
