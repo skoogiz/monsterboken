@@ -2,8 +2,11 @@ package monsterboken.db.model;
 
 import java.util.Optional;
 
+import monsterboken.core.model.Habitat;
+import monsterboken.core.model.Mappable;
 
-public class HabitatEO {
+
+public class HabitatEO implements Mappable<Habitat>{
 
 	private Optional<Long> id;
 	private Integer code;
@@ -52,5 +55,8 @@ public class HabitatEO {
 	public void setIncludes(String includes) {
 		this.includes = includes;
 	}
-
+	
+	public Habitat map() {
+		return Habitat.create(code,  name,  includes);
+	}
 }

@@ -6,7 +6,8 @@ import monsterboken.core.model.Mappable;
 import monsterboken.core.model.Monster;
 import monsterboken.core.model.Rarity;
 
-public abstract class MonsterEO<T> implements Mappable<T> {
+
+public class MonsterEO implements Mappable<Monster> {
 	
 	private Optional<Long> id;
 	private String name;
@@ -22,10 +23,6 @@ public abstract class MonsterEO<T> implements Mappable<T> {
 		this.name = name;
 		this.habitat = habitat;
 		this.rarity = rarity;
-	}
-	
-	public void monsterMap(){
-		map();
 	}
 
 	public Optional<Long> getId() {
@@ -58,6 +55,11 @@ public abstract class MonsterEO<T> implements Mappable<T> {
 
 	public void setRarity(Rarity rarity) {
 		this.rarity = rarity;
+	}
+
+	@Override
+	public Monster map() {
+		return Monster.create(name, habitat.map(), rarity);
 	}
 	
 	
