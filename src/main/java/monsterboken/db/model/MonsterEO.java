@@ -9,7 +9,7 @@ import monsterboken.core.model.Rarity;
 
 public class MonsterEO implements Mappable<Monster> {
 	
-	private Optional<Long> id;
+	private Long id;
 	private String name;
 	private HabitatEO habitat;
 	private Rarity rarity;
@@ -19,17 +19,17 @@ public class MonsterEO implements Mappable<Monster> {
 	}
 	
 	public MonsterEO(Long id, String name, HabitatEO habitat, Rarity rarity) {
-		this.id = Optional.of(id);
+		this.id = id;
 		this.name = name;
 		this.habitat = habitat;
 		this.rarity = rarity;
 	}
 
-	public Optional<Long> getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Optional<Long> id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

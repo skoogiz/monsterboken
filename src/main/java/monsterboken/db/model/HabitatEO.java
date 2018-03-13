@@ -1,6 +1,7 @@
 package monsterboken.db.model;
 
 import java.util.Optional;
+import java.util.OptionalLong;
 
 import monsterboken.core.model.Habitat;
 import monsterboken.core.model.Mappable;
@@ -8,7 +9,7 @@ import monsterboken.core.model.Mappable;
 
 public class HabitatEO implements Mappable<Habitat>{
 
-	private Optional<Long> id;
+	private Long id;
 	private Integer code;
 	private String name;
 	private String includes;
@@ -18,17 +19,17 @@ public class HabitatEO implements Mappable<Habitat>{
 	}
 
 	public HabitatEO(Long id, Integer code, String name, String includes) {
-		this.id = Optional.of(id);
+		this.id = id;
 		this.code = code;
 		this.name = name;
 		this.includes = includes;
 	}
 
-	public Optional<Long> getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Optional<Long> id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
