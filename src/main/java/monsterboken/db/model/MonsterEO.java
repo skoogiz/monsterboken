@@ -59,8 +59,6 @@ public class MonsterEO implements Mappable<Monster> {
 
 	@Override
 	public Monster map() {
-		return Monster.create(name, habitat.map(), rarity);
+		return Monster.create(id, name, habitat.map(), rarity);
 	}
-	
-	
 }

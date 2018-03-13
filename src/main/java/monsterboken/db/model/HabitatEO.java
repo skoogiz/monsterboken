@@ -58,6 +58,6 @@ public class HabitatEO implements Mappable<Habitat>{
 	}
 	
 	public Habitat map() {
-		return Habitat.create(code,  name,  includes);
+		return Habitat.create(id, code,  name,  includes);
 	}
 }
