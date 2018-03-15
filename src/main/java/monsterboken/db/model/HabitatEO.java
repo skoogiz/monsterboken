@@ -1,13 +1,9 @@
 package monsterboken.db.model;
 
-import java.util.Optional;
-import java.util.OptionalLong;
-
 import monsterboken.core.model.Habitat;
 import monsterboken.core.model.Mappable;
 
-
-public class HabitatEO implements Mappable<Habitat>{
+public class HabitatEO implements Mappable<Habitat> {
 
 	private Long id;
 	private Integer code;
@@ -15,14 +11,15 @@ public class HabitatEO implements Mappable<Habitat>{
 	private String includes;
 
 	public HabitatEO() {
-
+		
 	}
 
-	public HabitatEO(Long id, Integer code, String name, String includes) {
-		this.id = id;
-		this.code = code;
-		this.name = name;
-		this.includes = includes;
+	public HabitatEO(Habitat habitat) {
+		if(habitat.getId().isPresent()) {
+		this.id = getId();}
+		this.code = getCode();
+		this.name = getName();
+		this.includes = getIncludes();
 	}
 
 	public Long getId() {
@@ -36,11 +33,10 @@ public class HabitatEO implements Mappable<Habitat>{
 	public Integer getCode() {
 		return code;
 	}
-
+	
 	public void setCode(Integer code) {
 		this.code = code;
 	}
-
 	public String getName() {
 		return name;
 	}
@@ -56,8 +52,8 @@ public class HabitatEO implements Mappable<Habitat>{
 	public void setIncludes(String includes) {
 		this.includes = includes;
 	}
-	
+
 	public Habitat map() {
-		return Habitat.create(id, code,  name,  includes);
+		return Habitat.create(id, code, name, includes);
 	}
 }
