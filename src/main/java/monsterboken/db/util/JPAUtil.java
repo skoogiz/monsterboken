@@ -3,8 +3,9 @@ package monsterboken.db.util;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class JPAUtil {
-	private static final String PERSISTENCE_UNIT_NAME = "inMemoryPU";
+public final class JPAUtil {
+
+    private static final String PERSISTENCE_UNIT_NAME = "inMemoryPU";
     private static EntityManagerFactory factory;
 
     public static EntityManagerFactory getEntityManagerFactory() {
@@ -18,5 +19,8 @@ public class JPAUtil {
         if (factory != null) {
             factory.close();
         }
+    }
+
+    private JPAUtil() {
     }
 }

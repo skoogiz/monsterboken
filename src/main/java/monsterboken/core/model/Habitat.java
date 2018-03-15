@@ -4,40 +4,40 @@ import java.util.Optional;
 
 public class Habitat {
 
-	private final Optional<Long> id;
-	private final Integer code;
-	private final String name;
-	private final String includes;
+    private final Optional<Long> id;
+    private final Integer code;
+    private final String name;
+    private final String includes;
 
-	private Habitat(Optional<Long> id, Integer code, String name, String includes) {
-		super();
-		this.id = id;
-		this.code = code;
-		this.name = name;
-		this.includes = includes;
-	}
+    private Habitat(Optional<Long> id, Integer code, String name, String includes) {
+        super();
+        this.id = id;
+        this.code = code;
+        this.name = name;
+        this.includes = includes;
+    }
 
-	public Optional<Long> getId() {
-		return id;
-	}
-	
-	public Integer getCode() {
-		return code;
-	}
+    public Optional<Long> getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public Integer getCode() {
+        return code;
+    }
 
-	public String getIncludes() {
-		return includes;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public static Habitat create(Long id, Integer code, String name, String includes) {
-		return new Habitat(Optional.of(id), code, name, includes);
-	}
-	
-	public static Habitat create(Integer code, String name, String includes) {
-		return new Habitat(Optional.empty(), code, name, includes);
-	}
+    public String getIncludes() {
+        return includes;
+    }
+
+    public static Habitat create(Long id, Integer code, String name, String includes) {
+        return new Habitat(Optional.of(id), code, name, includes);
+    }
+
+    public static Habitat create(Integer code, String name, String includes) {
+        return new Habitat(Optional.empty(), code, name, includes);
+    }
 }

@@ -12,54 +12,64 @@ import monsterboken.core.model.Mappable;
 @Entity
 public class HabitatEO implements Mappable<Habitat> {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "HABITAT_ID")
-	private Long id;
-	
-	@Column(name = "CODE")
-	private Integer code;
-	
-	@Column(name = "NAME")
-	private String name;
-	
-	@Column(name = "INCLUDES")
-	private String includes;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "HABITAT_ID")
+    private Long id;
 
-	public Long getId() {
-		return id;
-	}
+    @Column(name = "CODE")
+    private Integer code;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Column(name = "NAME")
+    private String name;
 
-	public Integer getCode() {
-		return code;
-	}
+    @Column(name = "INCLUDES")
+    private String includes;
 
-	public void setCode(Integer code) {
-		this.code = code;
-	}
+    public static HabitatEO create(Habitat habitat) {
+        HabitatEO eo = new HabitatEO();
+        habitat.getId().ifPresent(eo::setId);
+        eo.setCode(habitat.getCode());
+        eo.setName(habitat.getName());
+        eo.setIncludes(habitat.getIncludes());
+        return eo;
+    }
 
-	public String getName() {
-		return name;
-	}
+    @Override
+    public Habitat map() {
+        return Habitat.create(id, code, name, includes);
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getIncludes() {
-		return includes;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setIncludes(String includes) {
-		this.includes = includes;
-	}
+    public Integer getCode() {
+        return code;
+    }
 
-	@Override
-	public Habitat map() {
-		return Habitat.create(code, name, includes);
-	}
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getIncludes() {
+        return includes;
+    }
+
+    public void setIncludes(String includes) {
+        this.includes = includes;
+    }
+
 }

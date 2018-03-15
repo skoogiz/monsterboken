@@ -20,57 +20,66 @@ import monsterboken.core.model.Rarity;
 @Entity
 public class MonsterEO implements Mappable<Monster> {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "MONSTER_ID")
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "MONSTER_ID")
+    private Long id;
 
-	@Column(name = "NAME")
-	private String name;
+    @Column(name = "NAME")
+    private String name;
 
-	@ManyToOne(optional = false)
-    @JoinColumn(name="HABITAT_ID")
-	private HabitatEO habitat;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "HABITAT_ID")
+    private HabitatEO habitat;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "RARITY")
-	private Rarity rarity;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "RARITY")
+    private Rarity rarity;
 
-	public Long getId() {
-		return id;
-	}
+    public static MonsterEO create(Monster monster) {
+        MonsterEO eo = new MonsterEO();
+        monster.getId().ifPresent(eo::setId);
+        eo.setName(monster.getName());
+        eo.setHabitat(HabitatEO.create(monster.getHabitat()));
+        eo.setRarity(monster.getRarity());
+        return eo;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Override
+    public Monster map() {
+        return Monster.create(name, habitat.map(), rarity);
+    }
 
-	public String getName() {
-		return name;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public HabitatEO getHabitat() {
-		return habitat;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setHabitat(HabitatEO habitat) {
-		this.habitat = habitat;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Rarity getRarity() {
-		return rarity;
-	}
+    public HabitatEO getHabitat() {
+        return habitat;
+    }
 
-	public void setRarity(Rarity rarity) {
-		this.rarity = rarity;
-	}
+    public void setHabitat(HabitatEO habitat) {
+        this.habitat = habitat;
+    }
 
-	@Override
-	public Monster map() {
-		return Monster.create(name, habitat.map(), rarity);
-	}
+    public Rarity getRarity() {
+        return rarity;
+    }
+
+    public void setRarity(Rarity rarity) {
+        this.rarity = rarity;
+    }
 
 }
