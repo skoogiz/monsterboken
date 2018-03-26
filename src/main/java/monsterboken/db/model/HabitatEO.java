@@ -10,7 +10,7 @@ import monsterboken.core.model.Habitat;
 import monsterboken.core.model.Mappable;
 
 @Entity
-public class HabitatEO implements Mappable<Habitat> {
+public class HabitatEO implements EntityObject, Mappable<Habitat> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -40,6 +40,7 @@ public class HabitatEO implements Mappable<Habitat> {
         return Habitat.create(id, code, name, includes);
     }
 
+    @Override
     public Long getId() {
         return id;
     }

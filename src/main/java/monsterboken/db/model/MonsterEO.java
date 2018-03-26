@@ -18,7 +18,7 @@ import monsterboken.core.model.Monster;
 import monsterboken.core.model.Rarity;
 
 @Entity
-public class MonsterEO implements Mappable<Monster> {
+public class MonsterEO implements EntityObject, Mappable<Monster> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -50,6 +50,7 @@ public class MonsterEO implements Mappable<Monster> {
         return Monster.create(name, habitat.map(), rarity);
     }
 
+    @Override
     public Long getId() {
         return id;
     }

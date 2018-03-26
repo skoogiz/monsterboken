@@ -2,8 +2,6 @@ package monsterboken.core;
 
 import javax.persistence.EntityManager;
 
-import monsterboken.core.model.Habitat;
-import monsterboken.db.model.HabitatEO;
 import monsterboken.db.util.JPAUtil;
 
 public class MainApp {

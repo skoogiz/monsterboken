@@ -5,9 +5,17 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import monsterboken.db.model.EntityObject;
 import monsterboken.db.util.JPAUtil;
 
-public class AbstractDao<T> implements Dao<T> {
+public class AbstractDao<T extends EntityObject> implements Dao<T> {
+
+    private Class<T> eoClass;
+    
+    public AbstractDao(Class<T> eoClass) {
+        super();
+        this.eoClass = eoClass;
+    }
 
     @Override
     public void create(T bean) {
@@ -25,11 +33,11 @@ public class AbstractDao<T> implements Dao<T> {
         em.close();
     }
 
-    // @Override
-    // public Optional<T> find(Long id) {
-    // EntityManager em = getEntityManager();
-    // return Optional.ofNullable(em.find(id));
-    // }
+    @Override
+    public Optional<T> find(Long id) {
+        EntityManager em = getEntityManager();
+        return Optional.ofNullable(em.find(eoClass ,id));
+    }    
 
     @Override
     public void update(T bean) {

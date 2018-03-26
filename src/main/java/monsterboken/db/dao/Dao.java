@@ -2,11 +2,13 @@ package monsterboken.db.dao;
 
 import java.util.Optional;
 
-public interface Dao<T> {
+import monsterboken.db.model.EntityObject;
+
+public interface Dao<T extends EntityObject> {
 
     void create(T bean);
 
-    // Optional<T> find(Long id);
+    Optional<T> find(Long id);
 
     void update(T bean);
 

@@ -1,5 +1,6 @@
 package monsterboken.core.domain;
 
+import static monsterboken.core.domain.HabitatHelper.*;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -14,9 +15,6 @@ import monsterboken.core.model.Rarity;
 
 public class SimpleMonsterTest {
 
-    private static int HABITAT_CODE = 2;
-    private static String HABITAT_NAME = "Skog";
-    private static String HABITAT_INCLUDES = "Gläntor, stigar och ihåliga träd.";
 
     @Test
     public void testRarities() {
@@ -25,25 +23,26 @@ public class SimpleMonsterTest {
 
     @Test
     public void testHabitat() {
-        Habitat habitat = Habitat.create(HABITAT_CODE, HABITAT_NAME, HABITAT_INCLUDES);
+        Habitat habitat = HabitatHelper.createDefaultWithoutId();
         assertNotNull(habitat);
         assertFalse(habitat.getId().isPresent());
-        assertThat(habitat.getCode(), equalTo(HABITAT_CODE));
-        assertThat(habitat.getName(), equalTo(HABITAT_NAME));
-        assertThat(habitat.getIncludes(), equalTo(HABITAT_INCLUDES));
+        assertThat(habitat.getCode(), equalTo(DEFAULT_HABITAT_CODE));
+        assertThat(habitat.getName(), equalTo(DEFAULT_HABITAT_NAME));
+        assertThat(habitat.getIncludes(), equalTo(DEFAULT_HABITAT_INCLUDES));
         
-        habitat = Habitat.create(1l, HABITAT_CODE, HABITAT_NAME, HABITAT_INCLUDES);
+        habitat = HabitatHelper.createDefaultWithId();
         assertNotNull(habitat);
         assertTrue(habitat.getId().isPresent());
-        assertThat(habitat.getCode(), equalTo(HABITAT_CODE));
-        assertThat(habitat.getName(), equalTo(HABITAT_NAME));
-        assertThat(habitat.getIncludes(), equalTo(HABITAT_INCLUDES));
+        assertThat(habitat.getId().get(), equalTo(DEFAULT_HABITAT_ID));
+        assertThat(habitat.getCode(), equalTo(DEFAULT_HABITAT_CODE));
+        assertThat(habitat.getName(), equalTo(DEFAULT_HABITAT_NAME));
+        assertThat(habitat.getIncludes(), equalTo(DEFAULT_HABITAT_INCLUDES));
     }
 
     @Test
     public void teatMonster() {
         String name = "Drake";
-        Habitat habitat = Habitat.create(HABITAT_CODE, HABITAT_NAME, HABITAT_INCLUDES);
+        Habitat habitat = HabitatHelper.createDefaultWithoutId();
         Rarity rarity = Rarity.VERY_RARE;
         Monster monster = Monster.create(name, habitat, rarity);
         assertNotNull(monster);
