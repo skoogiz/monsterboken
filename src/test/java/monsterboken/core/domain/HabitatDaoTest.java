@@ -17,23 +17,25 @@ import monsterboken.db.model.HabitatEO;
 
 public class HabitatDaoTest {
 
-    private HabitatDao dao = new HabitatDaoImpl();
+    private HabitatDao dao;
 
     @Before
     public void init() {
+        this.dao = new HabitatDaoImpl();
     }
 
     @After
     public void clean() {
+        this.dao = null;
     }
 
     @Test
     public void testCreate() {
         Habitat habitat = HabitatHelper.createDefaultWithoutId();
-        
+
         HabitatEO eo = HabitatEO.create(habitat);
         assertNull(eo.getId());
-        
+
         dao.create(eo);
         assertNotNull(eo.getId());
         assertThat(eo.getCode(), equalTo(habitat.getCode()));
@@ -45,12 +47,13 @@ public class HabitatDaoTest {
     public void testFind() {
         HabitatEO eo = HabitatEO.create(HabitatHelper.createDefaultWithoutId());
         dao.create(eo);
-        
+
         long habitatId = eo.getId();
-        Optional<HabitatEO> optional = dao.find(habitatId);
+        Optional<Habitat> optional = dao.find(habitatId);
         assertTrue(optional.isPresent());
-        HabitatEO fetchedHabitat = optional.get();
-        assertThat(fetchedHabitat.getId(), equalTo(eo.getId()));
+        Habitat fetchedHabitat = optional.get();
+        assertTrue(fetchedHabitat.getId().isPresent());
+        assertThat(fetchedHabitat.getId().get(), equalTo(eo.getId()));
         assertThat(fetchedHabitat.getCode(), equalTo(eo.getCode()));
         assertThat(fetchedHabitat.getName(), equalTo(eo.getName()));
         assertThat(fetchedHabitat.getIncludes(), equalTo(eo.getIncludes()));
@@ -60,21 +63,20 @@ public class HabitatDaoTest {
     public void testUpdate() {
         HabitatEO eo = HabitatEO.create(HabitatHelper.createDefaultWithoutId());
         dao.create(eo);
-        
+
         long habitatId = eo.getId();
-        
-        eo.setCode(eo.getCode() + 1);
+
+        Habitat fetchedHabitat = dao.find(habitatId).get();
+        eo.setCode(HabitatHelper.DEFAULT_HABITAT_CODE + 1);
         eo.setName(eo.getName() + "test");
-        
-        HabitatEO fetchedHabitat = dao.find(habitatId).get();
-        assertThat(fetchedHabitat.getId(), equalTo(eo.getId()));
+        assertThat(fetchedHabitat.getId().get(), equalTo(eo.getId()));
         assertThat(fetchedHabitat.getCode(), not(eo.getCode()));
         assertThat(fetchedHabitat.getName(), not(eo.getName()));
         assertThat(fetchedHabitat.getIncludes(), equalTo(eo.getIncludes()));
-        
+
         dao.update(eo);
         fetchedHabitat = dao.find(habitatId).get();
-        assertThat(fetchedHabitat.getId(), equalTo(eo.getId()));
+        assertThat(fetchedHabitat.getId().get(), equalTo(eo.getId()));
         assertThat(fetchedHabitat.getCode(), equalTo(eo.getCode()));
         assertThat(fetchedHabitat.getName(), equalTo(eo.getName()));
         assertThat(fetchedHabitat.getIncludes(), equalTo(eo.getIncludes()));
@@ -84,11 +86,11 @@ public class HabitatDaoTest {
     public void testDelete() {
         HabitatEO eo = HabitatEO.create(HabitatHelper.createDefaultWithoutId());
         dao.create(eo);
-        
+
         long habitatId = eo.getId();
-        
+
         dao.delete(eo);
-        Optional<HabitatEO> optional = dao.find(habitatId);
+        Optional<Habitat> optional = dao.find(habitatId);
         assertFalse(optional.isPresent());
     }
 

@@ -1,6 +1,8 @@
 package monsterboken.db.model;
 
-public interface EntityObject {
+import monsterboken.core.model.Mappable;
+
+public interface EntityObject<T> extends Mappable<T> {
 
     Long getId();
     

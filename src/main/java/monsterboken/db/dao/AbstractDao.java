@@ -8,10 +8,11 @@ import javax.persistence.EntityTransaction;
 import monsterboken.db.model.EntityObject;
 import monsterboken.db.util.JPAUtil;
 
-public class AbstractDao<T extends EntityObject> implements Dao<T> {
+public class AbstractDao<M, T extends EntityObject<M>> implements Dao<M, T> {
 
     private Class<T> eoClass;
-    
+    private EntityManager entityManager;
+
     public AbstractDao(Class<T> eoClass) {
         super();
         this.eoClass = eoClass;
@@ -30,14 +31,14 @@ public class AbstractDao<T extends EntityObject> implements Dao<T> {
                 tx.rollback();
             }
         }
-        em.close();
     }
 
     @Override
-    public Optional<T> find(Long id) {
+    public Optional<M> find(Long id) {
         EntityManager em = getEntityManager();
-        return Optional.ofNullable(em.find(eoClass ,id));
-    }    
+        T eo = em.find(eoClass, id);
+        return eo != null ? Optional.of(eo.map()) : Optional.empty();
+    }
 
     @Override
     public void update(T bean) {
@@ -52,7 +53,6 @@ public class AbstractDao<T extends EntityObject> implements Dao<T> {
                 tx.rollback();
             }
         }
-        em.close();
     }
 
     @Override
@@ -68,11 +68,13 @@ public class AbstractDao<T extends EntityObject> implements Dao<T> {
                 tx.rollback();
             }
         }
-        em.close();
     }
 
     public EntityManager getEntityManager() {
-        return JPAUtil.getEntityManagerFactory().createEntityManager();
+        if (entityManager == null) {
+            entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+        }        
+        return entityManager;
     }
 
 }

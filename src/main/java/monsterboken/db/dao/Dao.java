@@ -4,11 +4,11 @@ import java.util.Optional;
 
 import monsterboken.db.model.EntityObject;
 
-public interface Dao<T extends EntityObject> {
+public interface Dao<M, T extends EntityObject<M>> {
 
     void create(T bean);
 
-    Optional<T> find(Long id);
+    Optional<M> find(Long id);
 
     void update(T bean);
 

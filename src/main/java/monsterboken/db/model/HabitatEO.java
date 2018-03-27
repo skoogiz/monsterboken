@@ -7,10 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import monsterboken.core.model.Habitat;
-import monsterboken.core.model.Mappable;
 
 @Entity
-public class HabitatEO implements EntityObject, Mappable<Habitat> {
+public class HabitatEO implements EntityObject<Habitat> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

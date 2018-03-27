@@ -13,12 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import monsterboken.core.model.Mappable;
 import monsterboken.core.model.Monster;
 import monsterboken.core.model.Rarity;
 
 @Entity
-public class MonsterEO implements EntityObject, Mappable<Monster> {
+public class MonsterEO implements EntityObject<Monster> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
